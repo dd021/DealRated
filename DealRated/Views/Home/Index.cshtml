@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DealRated.Models.Store>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-6 pt-5">
+        <h1 class="font-weight-bolder">Discover Shopper Rated Deals And Recommended Brands</h1>
+        <p class="font-weight-bold">DealRated connects you to the best deals for thousands of online stores, and helps you to find trending brands and products in hundreds of categories.</p>
+    </div>
+    <div class="col-6">
+        <img src="~/images/vc_v2.png" class="img-fluid" />
+    </div>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Available Store</h1>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-2 box-shadow">
+            <div class="col-md-12 p-2 text-center">
+                <img src="~/stores/@item.StoreID@item.ExtName" class="img-fluid" />
+                <h2 class="category_title">@item.Category.CategoryName</h2>
+                <h4 class="section_name">@item.StoreName</h4>
+                <a asp-action="ViewStoreDeals" asp-route-id="@item.StoreID" class="btn btn-primary">Shop Deals</a>
+            </div>
+        </div>
+    }
+</div>

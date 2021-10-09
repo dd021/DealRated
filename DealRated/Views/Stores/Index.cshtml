@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DealRated.Models.Store>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">All Store Details</h1>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Store</a>
+</p>
+<hr />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Store Logo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td style="width:20%">
+    <img src="~/stores/@item.StoreID@item.ExtName" class="img-fluid" />
+</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StoreName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StoreID">Edit</a>  |
+                    <a asp-action="Delete" asp-route-id="@item.StoreID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

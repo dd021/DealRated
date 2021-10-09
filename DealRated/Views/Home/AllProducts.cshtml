@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DealRated.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+<div class="text-center">
+    <h1 class="display-4">Explore Recommended Products</h1>
+</div>
+<div class="row categories ">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-5">
+            <div class="col-md-12  border box-shadow categories_bg category-color text-center">
+                <img src="~/products/@item.ProductID@item.ExtName" class="img-fluid" />
+                <h2 class="category_title text-overflow-elipsis">@item.ProductName</h2>
+                <h4 class="section_name">@item.Description</h4>
+                <a href="@item.Url" target="_blank" class="btn btn-block btn-primary">View Product</a>
+            </div>
+        </div>
+    }
+</div>

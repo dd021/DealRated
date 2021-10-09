@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DealRated.Models.Category>
+
+@{
+    ViewData["Title"] = "AllCategories";
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-12">
+            <h1 class="text-center">@item.CategoryName</h1>
+            <hr />
+            @if(item.Stores.Count > 0)
+            {
+        <div class="row">
+            @foreach (var store in item.Stores)
+            {
+                <div class="col-md-3 mb-2">
+                    <div class="col-md-12 p-2  box-shadow text-center">
+                        <img src="~/stores/@store.StoreID@store.ExtName" class="img-fluid" />                        
+                        <h4 class="section_name">@store.StoreName</h4>
+                        <a asp-action="ViewStoreDeals" asp-route-id="@store.StoreID" class="btn btn-primary">Shop Deals</a>
+                    </div>
+                </div>
+            }
+        </div>
+            }
+            else
+            {
+                <p class="font-weight-bold">No Store for this Category</p>
+            }
+        </div>
+    }
+</div>

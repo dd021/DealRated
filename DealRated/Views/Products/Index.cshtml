@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DealRated.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">All Product Details</h1>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Product</a>
+</p>
+<hr />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Product Photo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td style="width:20%">
+    <img src="~/products/@item.ProductID@item.ExtName" class="img-fluid" />
+</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a href="@item.Url" target="_blank">Visit Product Url</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a>  |
+                    <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

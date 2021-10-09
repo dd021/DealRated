@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DealRated.Models.Coupon>
+
+@{
+    ViewData["Title"] = "ViewStoreDeals";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["StoreName"] Deals</h1>
+</div>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Store)
+            </th>
+            <th>
+                Coupon Code
+            </th>
+            <th>
+                Discount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="width:40%">
+                <img src="~/stores/@item.Store.StoreID@item.Store.ExtName" class="img-fluid" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Percentage) %
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
